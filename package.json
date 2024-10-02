@@ -9,9 +9,16 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/react": "^11.13.3",
+    "@emotion/styled": "^11.13.0",
+    "@mui/icons-material": "^6.1.1",
+    "@mui/material": "^6.1.1",
+    "@mui/x-date-pickers": "^7.18.0",
     "apexcharts": "^3.45.2",
+    "export-to-csv": "^1.4.0",
     "flatpickr": "^4.6.13",
     "jsvectormap": "^1.6.0",
+    "material-react-table": "^3.0.1",
     "next": "^14.2.13",
     "react": "^18.3.1",
     "react-apexcharts": "^1.4.1",
