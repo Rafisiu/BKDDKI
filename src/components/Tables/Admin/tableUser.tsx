@@ -9,7 +9,6 @@ import {
 import { Box, Button } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit"; // Impor ikon Edit
 import DeleteIcon from "@mui/icons-material/Delete"; // Impor ikon Delete
-import VisibilityIcon from "@mui/icons-material/Visibility"; // Impor ikon View
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import { useRouter } from "next/navigation";
 
@@ -26,6 +25,7 @@ type Person = {
   nosp: string;
 };
 
+// Sample data
 const data: Person[] = [
   {
     name: {
@@ -37,55 +37,34 @@ const data: Person[] = [
     state: "Pembina/IV A",
     nosp: "Admin",
   },
-  {
-    name: {
-      firstName: "098579",
-      lastName: "18680506199203100",
-    },
-    address: "Farah Nadia Putri",
-    city: "Camat",
-    state: "Pembina/IV A",
-    nosp: "Admin",
-  },
-  {
-    name: {
-      firstName: "098579",
-      lastName: "18680506199203100",
-    },
-    address: "Farah Nadia Putri",
-    city: "Camat",
-    state: "Pembina/IV A",
-    nosp: "Admin",
-  },
-  {
-    name: {
-      firstName: "098579",
-      lastName: "18680506199203100",
-    },
-    address: "Farah Nadia Putri",
-    city: "Camat",
-    state: "Pembina/IV A",
-    nosp: "Admin",
-  },
-  {
-    name: {
-      firstName: "098579",
-      lastName: "18680506199203100",
-    },
-    address: "Farah Nadia Putri",
-    city: "Camat",
-    state: "Pembina/IV A",
-    nosp: "Admin",
-  },
+  // ... Data lainnya
 ];
 
-const tableUser = () => {
+const TableUser = () => {
   const router = useRouter();
 
-  const detail = () => {
-    router.push("/admin/user_management/detail");
-  };
+  // Action cell component
+  const ActionsCell = ({ row }: { row: MRT_Row<Person> }) => (
+    <Box sx={{ display: "flex" }}>
+      <Button
+        sx={{ padding: 0, margin: 0, minWidth: 0, marginRight: 0.5 }}
+        onClick={() => router.push("/admin/user_management/detail")}
+      >
+        <EditIcon fontSize="small" />
+      </Button>
+      <Button sx={{ padding: 0, margin: 0, minWidth: 0, marginRight: 0.5 }}>
+        <DeleteIcon fontSize="small" />
+      </Button>
+      <Button
+        sx={{ padding: 0, margin: 0, minWidth: 0, marginRight: 0.5 }}
+        onClick={() => router.push("/admin/user_management/detail")}
+      >
+        <MoreHorizIcon fontSize="small" />
+      </Button>
+    </Box>
+  );
 
+  // Use useMemo to define columns
   const columns = useMemo<MRT_ColumnDef<Person>[]>(() => {
     return [
       {
@@ -95,7 +74,7 @@ const tableUser = () => {
         Cell: ({ row }) => row.index + 1, // display the row index + 1
       },
       {
-        accessorKey: "name.firstName", //access nested data with dot notation
+        accessorKey: "name.firstName",
         header: "NRK",
         size: 150,
       },
@@ -105,7 +84,7 @@ const tableUser = () => {
         size: 150,
       },
       {
-        accessorKey: "address", //normal accessorKey
+        accessorKey: "address",
         header: "Nama Lengkap",
         size: 200,
       },
@@ -128,40 +107,23 @@ const tableUser = () => {
         id: "actions",
         size: 10,
         header: "Actions",
-        Cell: ({ row }: { row: MRT_Row<Person> }) => (
-          <Box sx={{ display: "flex" }}>
-            <Button
-              sx={{ padding: 0, margin: 0, minWidth: 0, marginRight: 0.5 }}
-              onClick={detail}
-            >
-              <EditIcon fontSize="small" />
-            </Button>
-            <Button
-              sx={{ padding: 0, margin: 0, minWidth: 0, marginRight: 0.5 }}
-            >
-              <DeleteIcon fontSize="small" />
-            </Button>
-            <Button
-              sx={{ padding: 0, margin: 0, minWidth: 0, marginRight: 0.5 }}
-              onClick={detail}
-            >
-              <MoreHorizIcon fontSize="small" />
-            </Button>
-          </Box>
-        ),
+        Cell: ActionsCell,
       }),
     ];
   }, []);
 
-  // Create a new data array with index property
-  const dataWithIndex = data.map((item, index) => ({ index, ...item }));
+  // Create a new data array with index property, memoized
+  const dataWithIndex = useMemo(
+    () => data.map((item, index) => ({ index, ...item })),
+    [data],
+  );
 
   const table = useMaterialReactTable({
     columns,
-    data: dataWithIndex, // use data with index
+    data: dataWithIndex,
   });
 
   return <MaterialReactTable table={table} />;
 };
 
-export default tableUser;
+export default TableUser;

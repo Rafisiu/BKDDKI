@@ -9,9 +9,7 @@ import {
 import { Box, Button } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 
-const columnHelper = createMRTColumnHelper<Person>();
-
-//example data type
+// Define a type for Person
 type Person = {
   name: {
     firstName: string;
@@ -25,8 +23,8 @@ type Person = {
   kerja: string;
 };
 
-//nested data is ok, see accessorKeys in ColumnDef below
-const data: Person[] = [
+// Example data for the letter table
+const dataSurat: Person[] = [
   {
     name: {
       firstName: "098579",
@@ -39,68 +37,22 @@ const data: Person[] = [
     pensiun: "09/09/2024",
     kerja: "PLT",
   },
-  {
-    name: {
-      firstName: "098579",
-      lastName: "18680506199203100",
-    },
-    address: "Farah Nadia Putri",
-    city: "Camat",
-    state: "Pembina/IV A",
-    nosp: "209/09/2022",
-    pensiun: "09/09/2024",
-    kerja: "PLT",
-  },
-  {
-    name: {
-      firstName: "098579",
-      lastName: "18680506199203100",
-    },
-    address: "Farah Nadia Putri",
-    city: "Camat",
-    state: "Pembina/IV A",
-    nosp: "209/09/2022",
-    pensiun: "09/09/2024",
-    kerja: "PLT",
-  },
-  {
-    name: {
-      firstName: "098579",
-      lastName: "18680506199203100",
-    },
-    address: "Farah Nadia Putri",
-    city: "Camat",
-    state: "Pembina/IV A",
-    nosp: "209/09/2022",
-    pensiun: "09/09/2024",
-    kerja: "PLT",
-  },
-  {
-    name: {
-      firstName: "098579",
-      lastName: "18680506199203100",
-    },
-    address: "Farah Nadia Putri",
-    city: "Camat",
-    state: "Pembina/IV A",
-    nosp: "209/09/2022",
-    pensiun: "09/09/2024",
-    kerja: "PLT",
-  },
+  // Add more entries as needed
 ];
 
-const tableSurat = () => {
-  //should be memoized or stable
+const columnHelper = createMRTColumnHelper<Person>();
+
+const TableSurat = () => {
   const columns = useMemo<MRT_ColumnDef<Person>[]>(() => {
     return [
       {
-        accessorKey: "index", // new accessor for row number
+        accessorKey: "index",
         header: "No",
         size: 50,
-        Cell: ({ row }) => row.index + 1, // display the row index + 1
+        Cell: ({ row }) => row.index + 1, // Display the row index + 1
       },
       {
-        accessorKey: "name.firstName", //access nested data with dot notation
+        accessorKey: "name.firstName",
         header: "NRK",
         size: 150,
       },
@@ -110,7 +62,7 @@ const tableSurat = () => {
         size: 150,
       },
       {
-        accessorKey: "address", //normal accessorKey
+        accessorKey: "address",
         header: "Nama Lengkap",
         size: 200,
       },
@@ -141,8 +93,8 @@ const tableSurat = () => {
       },
       columnHelper.display({
         id: "actions",
-        size: 10,
         header: "Actions",
+        size: 10,
         Cell: ({ row }: { row: MRT_Row<Person> }) => (
           <Box sx={{ display: "flex" }}>
             <Button>
@@ -155,7 +107,10 @@ const tableSurat = () => {
   }, []);
 
   // Create a new data array with index property
-  const dataWithIndex = data.map((item, index) => ({ index, ...item }));
+  const dataWithIndex = useMemo(
+    () => dataSurat.map((item, index) => ({ index, ...item })),
+    [dataSurat],
+  );
 
   const table = useMaterialReactTable({
     columns,
@@ -165,4 +120,4 @@ const tableSurat = () => {
   return <MaterialReactTable table={table} />;
 };
 
-export default tableSurat;
+export default TableSurat;

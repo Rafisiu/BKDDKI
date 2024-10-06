@@ -1,7 +1,7 @@
 "use client";
 import dynamic from "next/dynamic";
 import React from "react";
-import TabelUser from "../Tables/Admin/tableUser";
+import TabelUser from "../Tables/tablePLT";
 import Link from "next/link";
 
 const PLT: React.FC = () => {

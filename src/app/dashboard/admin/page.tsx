@@ -7,12 +7,12 @@ export const metadata: Metadata = {
     "Dashboard"
 };
 
-export default function Home() {
+const DashboardPage = () => {
   return (
-    <>
-      <DefaultLayout>
-        <ECommerce />
-      </DefaultLayout>
-    </>
+    <DefaultLayout>
+      <ECommerce />
+    </DefaultLayout>
   );
-}
+};
+
+export default DashboardPage;
