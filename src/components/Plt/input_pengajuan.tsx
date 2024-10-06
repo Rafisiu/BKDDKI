@@ -4,7 +4,10 @@ import PLH from "@/components/Plh/Plh";
 import { Metadata } from "next";
 import DefaultLayout from "@/components/Layouts/DefaultLayout";
 import Breadcrumb from "@/components/Breadcrumbs/BreadcrumbPlh";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch, faCalendarAlt } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
+
 
 export default function InputPengajuan() {
   const [step, setStep] = useState(1);
@@ -114,19 +117,33 @@ export default function InputPengajuan() {
             {/* Bagian form berdasarkan step */}
             {step === 1 && (
               <div>
-                <h2 className="mb-4 text-lg font-bold">
-                  Data Yang Berhalangan
-                </h2>
+                <div className=" grid grid-cols-2 gap-4">
+                  <h2 className="mb-4 text-lg font-bold">
+                    Data Yang Berhalangan
+                  </h2>
+                  <h2 className="mb-4 text-lg font-bold">Keterangan</h2>
+                </div>
                 <div className="mb-6 grid grid-cols-2 gap-4">
                   <div>
-                    <label className="text-gray-700 block">NIP/NIK:</label>
-                    <div className="relative">
+                    <label htmlFor="nppnrk" className="block">
+                      NPP/NRK:
+                    </label>
+                    <div className="flex">
                       <input
                         type="text"
+                        id="nppnrk"
                         className="border-gray-300 w-full rounded-md border p-2"
                       />
-                      <i className="fas fa-search text-gray-500 absolute right-3 top-3"></i>
+                      <button className="bg-gray-200 rounded-md border p-2">
+                        <FontAwesomeIcon icon={faSearch} />
+                      </button>
                     </div>
+                  </div>
+                  <div>
+                    <label className="text-gray-700 block">Kode Alasan:</label>
+                    <select className="border-gray-300 w-full rounded-md border p-2">
+                      <option value=""></option>
+                    </select>
                   </div>
                   <div>
                     <label className="text-gray-700 block">Nama Lengkap:</label>
@@ -134,25 +151,6 @@ export default function InputPengajuan() {
                       type="text"
                       className="border-gray-300 w-full rounded-md border p-2"
                     />
-                  </div>
-                  <div>
-                    <label className="text-gray-700 block">Jabatan:</label>
-                    <select className="border-gray-300 w-full rounded-md border p-2">
-                      <option value=""></option>
-                    </select>
-                  </div>
-                  <div>
-                    <label className="text-gray-700 block">Pangkat/Gol:</label>
-                    <input
-                      type="text"
-                      className="border-gray-300 w-full rounded-md border p-2"
-                    />
-                  </div>
-                  <div>
-                    <label className="text-gray-700 block">Keterangan:</label>
-                    <select className="border-gray-300 w-full rounded-md border p-2">
-                      <option value=""></option>
-                    </select>
                   </div>
                   <div>
                     <label className="text-gray-700 block">
@@ -163,7 +161,20 @@ export default function InputPengajuan() {
                     </select>
                   </div>
                   <div>
+                    <label className="text-gray-700 block">Jabatan:</label>
+                    <select className="border-gray-300 w-full rounded-md border p-2">
+                      <option value=""></option>
+                    </select>
+                  </div>
+                  <div>
                     <label className="text-gray-700 block">Alasan:</label>
+                    <input
+                      type="text"
+                      className="border-gray-300 w-full rounded-md border p-2"
+                    />
+                  </div>
+                  <div>
+                    <label className="text-gray-700 block">Pangkat/Gol:</label>
                     <input
                       type="text"
                       className="border-gray-300 w-full rounded-md border p-2"
@@ -191,49 +202,148 @@ export default function InputPengajuan() {
             )}
 
             {step === 2 && (
-              <div>
-                <h2 className="mb-4 text-lg font-bold">
-                  Data Pengajuan Pelaksana Tugas (PLT)
-                </h2>
-                <div className="mb-6 grid grid-cols-2 gap-4">
-                  <div>
-                    <label className="text-gray-700 block">NIP/NIK PLT:</label>
+              <div className="p-4">
+                <div className="mb-4">
+                  <h2 className="font-bold">Status Pengajuan</h2>
+                  <div className="mb-2 flex items-center">
                     <input
-                      type="text"
-                      className="border-gray-300 w-full rounded-md border p-2"
+                      type="radio"
+                      id="baru"
+                      name="status"
+                      className="mr-2"
                     />
+                    <label htmlFor="baru">Baru</label>
                   </div>
-                  <div>
-                    <label className="text-gray-700 block">
-                      Nama Lengkap PLT:
+                  <div className="flex items-center">
+                    <input
+                      type="radio"
+                      id="perpanjangan"
+                      name="status"
+                      className="mr-2"
+                    />
+                    <label htmlFor="perpanjangan">Perpanjangan</label>
+                  </div>
+                </div>
+
+                <div className="mb-4">
+                  <h2 className="font-bold">Informasi Pelaksanaan Tugas</h2>
+                  <div className="mb-2">
+                    <label htmlFor="nppnrk" className="block">
+                      NPP/NRK:
+                    </label>
+                    <div className="flex">
+                      <input
+                        type="text"
+                        id="nppnrk"
+                        className="flex-grow border p-2"
+                      />
+                      <button className="bg-gray-200 border p-2">
+                        <FontAwesomeIcon icon={faSearch} />
+                      </button>
+                    </div>
+                  </div>
+                  <div className="mb-2">
+                    <label htmlFor="nama" className="block">
+                      Nama Lengkap:
                     </label>
                     <input
                       type="text"
-                      className="border-gray-300 w-full rounded-md border p-2"
+                      id="nama"
+                      className="w-full border p-2"
                     />
                   </div>
-                  <div>
-                    <label className="text-gray-700 block">Jabatan PLT:</label>
-                    <select className="border-gray-300 w-full rounded-md border p-2">
-                      <option value=""></option>
-                    </select>
-                  </div>
-                  <div>
-                    <label className="text-gray-700 block">
-                      Pangkat/Gol PLT:
+                  <div className="mb-2">
+                    <label htmlFor="jabatan" className="block">
+                      Jabatan:
                     </label>
                     <input
                       type="text"
-                      className="border-gray-300 w-full rounded-md border p-2"
+                      id="jabatan"
+                      className="w-full border p-2"
                     />
                   </div>
-                  <div>
-                    <label className="text-gray-700 block">
-                      Keterangan PLT:
+                  <div className="mb-2">
+                    <label htmlFor="pangkat" className="block">
+                      Pangkat/Gol.:
                     </label>
                     <input
                       type="text"
-                      className="border-gray-300 w-full rounded-md border p-2"
+                      id="pangkat"
+                      className="w-full border p-2"
+                    />
+                  </div>
+                </div>
+
+                <div className="mb-4">
+                  <h2 className="font-bold">Informasi Pelaksanaan Tugas</h2>
+                  <div className="mb-2">
+                    <button className="w-full bg-blue-500 p-2 text-white">
+                      Lihat
+                    </button>
+                  </div>
+                  <div className="mb-2">
+                    <button className="w-full bg-blue-500 p-2 text-white">
+                      Lihat
+                    </button>
+                  </div>
+                  <div className="mb-2">
+                    <label htmlFor="batas" className="block">
+                      Batas Usia Pensiun:
+                    </label>
+                    <input
+                      type="text"
+                      id="batas"
+                      className="w-full border p-2"
+                      placeholder="DD/MM/YYYY"
+                    />
+                    <small className="text-gray-500 block">
+                      Maks. 1 Tahun sebelum Batas Pensiun
+                    </small>
+                  </div>
+                </div>
+
+                <div className="mb-4">
+                  <h2 className="font-bold">Waktu</h2>
+                  <div className="mb-2">
+                    <label htmlFor="tanggalMulai" className="block">
+                      Tanggal Mulai:
+                    </label>
+                    <div className="flex">
+                      <input
+                        type="text"
+                        id="tanggalMulai"
+                        className="flex-grow border p-2"
+                        placeholder="DD/MM/YYYY"
+                      />
+                      <button className="bg-gray-200 border p-2">
+                        <FontAwesomeIcon icon={faCalendarAlt} />
+                      </button>
+                    </div>
+                  </div>
+                  <div className="mb-2">
+                    <label htmlFor="tanggalSelesai" className="block">
+                      Tanggal Selesai:
+                    </label>
+                    <div className="flex">
+                      <input
+                        type="text"
+                        id="tanggalSelesai"
+                        className="flex-grow border p-2"
+                        placeholder="DD/MM/YYYY"
+                      />
+                      <button className="bg-gray-200 border p-2">
+                        <FontAwesomeIcon icon={faCalendarAlt} />
+                      </button>
+                    </div>
+                  </div>
+                  <div className="mb-2">
+                    <label htmlFor="jumlahHari" className="block">
+                      Jumlah Hari / Bulan (Max. 13 Bulan):
+                    </label>
+                    <input
+                      type="text"
+                      id="jumlahHari"
+                      className="w-full border p-2"
                     />
                   </div>
                 </div>
@@ -242,40 +352,72 @@ export default function InputPengajuan() {
 
             {step === 3 && (
               <div>
-                <h2 className="mb-4 text-lg font-bold">
-                  Pejabat Yang Berwenang Memberikan Penugasan
-                </h2>
+                <div className=" grid grid-cols-2 gap-4">
+                  <h2 className="mb-4 text-lg font-bold">
+                    Data Yang Berhalangan
+                  </h2>
+                </div>
                 <div className="mb-6 grid grid-cols-2 gap-4">
                   <div>
-                    <label className="text-gray-700 block">NIP Pejabat:</label>
+                    <label htmlFor="nppnrk" className="block">
+                      NPP/NRK:
+                    </label>
+                    <div className="flex">
+                      <input
+                        type="text"
+                        id="nppnrk"
+                        className="border-gray-300 w-full rounded-md border p-2"
+                      />
+                      <button className="bg-gray-200 rounded-md border p-2">
+                        <FontAwesomeIcon icon={faSearch} />
+                      </button>
+                    </div>
+                  </div>
+                  <div>
+                  </div>
+                  <div>
+                    <label className="text-gray-700 block">Nama Lengkap:</label>
                     <input
                       type="text"
                       className="border-gray-300 w-full rounded-md border p-2"
                     />
                   </div>
                   <div>
-                    <label className="text-gray-700 block">Nama Pejabat:</label>
+                  </div>
+                  <div>
+                    <label className="text-gray-700 block">Jabatan:</label>
                     <input
                       type="text"
                       className="border-gray-300 w-full rounded-md border p-2"
                     />
+                  </div>
+                  <div>
+                  </div>
+                  <div>
+                    <label className="text-gray-700 block">Pangkat/Gol:</label>
+                    <input
+                      type="text"
+                      className="border-gray-300 w-full rounded-md border p-2"
+                    />
+                  </div>
+                  <div>
                   </div>
                   <div>
                     <label className="text-gray-700 block">
-                      Jabatan Pejabat:
+                      Upload Pendukung Alasan:
                     </label>
-                    <select className="border-gray-300 w-full rounded-md border p-2">
-                      <option value=""></option>
-                    </select>
-                  </div>
-                  <div>
-                    <label className="text-gray-700 block">
-                      Pangkat/Gol Pejabat:
-                    </label>
-                    <input
-                      type="text"
-                      className="border-gray-300 w-full rounded-md border p-2"
-                    />
+                    <div className="flex items-center space-x-2">
+                      <button className="rounded-md bg-blue-500 px-4 py-2 text-white">
+                        Lihat
+                      </button>
+                      <button className="rounded-md bg-blue-500 px-4 py-2 text-white">
+                        Unggah
+                      </button>
+                      <span>No file chosen</span>
+                    </div>
+                    <p className="text-gray-500 mt-1 text-sm">
+                      *Maksimum pdf size 3MB
+                    </p>
                   </div>
                 </div>
               </div>

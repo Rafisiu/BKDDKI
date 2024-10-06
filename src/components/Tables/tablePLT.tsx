@@ -75,7 +75,7 @@ const columns = [
             console.log("View clicked for:", row.original);
           }}
         >
-          <VisibilityIcon fontSize="small" />
+          <MoreHorizIcon fontSize="small" />
         </Button>
         <Button
           size="small"

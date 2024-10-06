@@ -61,13 +61,13 @@ export const metadata: Metadata = {
                         type="text"
                         />
                     </div>
-                    <a
+                    <Link
                         className="w-full rounded bg-blue-600 py-2 text-white"
                         type="submit"
-                        href="/dashboard/admin"
+                        href="/dashboard/admin" 
                     >
-                        Login
-                    </a>
+                        <div className="text-center">Login</div>
+                    </Link>
                     </form>
                     <div className="mt-18 text-center text-sm ">
                     <p className="font-bold">
