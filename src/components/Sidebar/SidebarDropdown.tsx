@@ -16,7 +16,7 @@ const SidebarDropdown = ({ item }: any) => {
                 pathname === item.route ? "text-white" : ""
               }`}
             >
-              {item.label}
+              {item.icon}{item.label}
             </Link>
           </li>
         ))}

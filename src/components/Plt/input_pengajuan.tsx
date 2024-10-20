@@ -100,7 +100,7 @@ export default function InputPengajuan() {
                         step === 1 ? "border-b-2 border-blue-500 font-bold" : ""
                       }`}
                     >
-                      Data Berhalangan
+                      Data Yang Berhalangan
                     </li>
                     <li
                       onClick={() => setStep(2)}
@@ -108,7 +108,7 @@ export default function InputPengajuan() {
                         step === 2 ? "border-b-2 border-blue-500 font-bold" : ""
                       }`}
                     >
-                      Data PLT
+                      Data Pengajuan Pelaksana Tugas (PLT)
                     </li>
                     <li
                       onClick={() => setStep(3)}
@@ -116,89 +116,95 @@ export default function InputPengajuan() {
                         step === 3 ? "border-b-2 border-blue-500 font-bold" : ""
                       }`}
                     >
-                      Pejabat Berwenang
+                      Pejabat Yang Berwenang Memberikan Penugasan
                     </li>
                   </ul>
                 </div>
 
                 {/* Bagian form berdasarkan step */}
-                {/* step1 jangan ditambahkan kode */}
                 {step === 1 && (
                   <div>
                     <div className=" grid grid-cols-2 gap-4">
                       <h2 className="mb-4 text-lg font-bold">
                         Data Yang Berhalangan
                       </h2>
-                      <h2 className="mb-4 text-lg font-bold">Keterangan</h2>
                     </div>
-                    <div className="mb-6 grid grid-cols-2 gap-4">
-                      <div>
-                        <label htmlFor="nppnrk" className="block">
-                          NPP/NRK:
+                    <div className="mb-6 space-y-4">
+                      <div className="flex items-center">
+                        <label htmlFor="nipnrk" className="w-1/4">
+                          NIP/NRK:
                         </label>
-                        <div className="flex">
+                        <div className="flex w-3/4">
                           <input
                             type="text"
                             id="nppnrk"
                             className="border-gray-300 w-full rounded-md border p-2"
                           />
-                          <button className="bg-gray-200 rounded-md border p-2">
+                          <button className="bg-gray-200 ml-2 rounded-md border p-2">
                             <FontAwesomeIcon icon={faSearch} />
                           </button>
                         </div>
                       </div>
-                      <div>
-                        <label className="text-gray-700 block">
-                          Kode Alasan:
-                        </label>
-                        <select className="border-gray-300 w-full rounded-md border p-2">
-                          <option value=""></option>
-                        </select>
-                      </div>
-                      <div>
-                        <label className="text-gray-700 block">
+
+                      <div className="flex items-center">
+                        <label className="text-gray-700 w-1/4">
                           Nama Lengkap:
                         </label>
                         <input
                           type="text"
-                          className="border-gray-300 w-full rounded-md border p-2"
+                          className="border-gray-300 w-3/4 rounded-md border p-2"
                         />
                       </div>
-                      <div>
-                        <label className="text-gray-700 block">
-                          Status Berhalangan:
-                        </label>
-                        <select className="border-gray-300 w-full rounded-md border p-2">
-                          <option value="Tetap">Tetap</option>
-                        </select>
-                      </div>
-                      <div>
-                        <label className="text-gray-700 block">Jabatan:</label>
-                        <select className="border-gray-300 w-full rounded-md border p-2">
+
+                      <div className="flex items-center">
+                        <label className="text-gray-700 w-1/4">Jabatan:</label>
+                        <select className="border-gray-300 w-3/4 rounded-md border p-2">
                           <option value=""></option>
                         </select>
                       </div>
-                      <div>
-                        <label className="text-gray-700 block">Alasan:</label>
-                        <input
-                          type="text"
-                          className="border-gray-300 w-full rounded-md border p-2"
-                        />
-                      </div>
-                      <div>
-                        <label className="text-gray-700 block">
+
+                      <div className="flex items-center">
+                        <label className="text-gray-700 w-1/4">
                           Pangkat/Gol:
                         </label>
                         <input
                           type="text"
-                          className="border-gray-300 w-full rounded-md border p-2"
+                          className="border-gray-300 w-3/4 rounded-md border p-2"
                         />
                       </div>
-                      <div>
-                        <label className="text-gray-700 block">
+
+                      <div className=" grid grid-cols-2 gap-4">
+                        <h2 className="mt-4 text-lg font-bold">Keterangan</h2>
+                      </div>
+
+                      <div className="flex items-center">
+                        <label className="text-gray-700 w-1/4">
+                          Kode Alasan:
+                        </label>
+                        <select className="border-gray-300 w-3/4 rounded-md border p-2">
+                          <option value=""></option>
+                        </select>
+                      </div>
+
+                      <div className="flex items-center">
+                        <label className="text-gray-700 w-1/4">
+                          Status Berhalangan:
+                        </label>
+                        <select className="border-gray-300 w-3/4 rounded-md border p-2">
+                          <option value="Tetap">Tetap</option>
+                        </select>
+                      </div>
+
+                      <div className="flex items-center">
+                        <label className="text-gray-700 w-1/4">Alasan:</label>
+                        <textarea className="border-gray-300 w-3/4 rounded-md border p-2" />
+                      </div>
+
+                      <div className="flex items-center">
+                        <label className="text-gray-700 w-1/4">
                           Upload Pendukung Alasan:
                         </label>
-                        <div className="flex items-center space-x-2">
+                        <div className="flex w-3/4 items-center space-x-2">
                           <button className="rounded-md bg-blue-500 px-4 py-2 text-white">
                             Lihat
                           </button>
@@ -207,9 +213,6 @@ export default function InputPengajuan() {
                           </button>
                           <span>No file chosen</span>
                         </div>
-                        <p className="text-gray-500 mt-1 text-sm">
-                          *Maksimum pdf size 3MB
-                        </p>
                       </div>
                     </div>
                   </div>
@@ -217,10 +220,13 @@ export default function InputPengajuan() {
 
                 {/* step2 jangan ditambahkan kode */}
                 {step === 2 && (
-                  <div className="p-4">
-                    <div className="mb-4">
-                      <h2 className="font-bold">Status Pengajuan</h2>
-                      <div className="mb-2 flex items-center">
+                  <div>
+                    <div className="mb-6 space-y-4">
+                      <div className=" grid grid-cols-2 gap-4">
+                        <h2 className="text-lg font-bold">Status Pengajuan</h2>
+                      </div>
+
+                      <div className="flex items-center">
                         <input
                           type="radio"
                           id="baru"
@@ -238,128 +244,128 @@ export default function InputPengajuan() {
                         />
                         <label htmlFor="perpanjangan">Perpanjangan</label>
                       </div>
-                    </div>
 
-                    <div className="mb-4">
-                      <h2 className="font-bold">Informasi Pelaksanaan Tugas</h2>
-                      <div className="mb-2">
-                        <label htmlFor="nppnrk" className="block">
-                          NPP/NRK:
+                      <div className=" grid grid-cols-2 gap-4">
+                        <h2 className="text-lg font-bold">
+                          Informasi Pelaksana Tugas
+                        </h2>
+                      </div>
+
+                      <div className="flex items-center">
+                        <label htmlFor="nipnrk" className="w-1/4">
+                          NIP/NRK:
                         </label>
-                        <div className="flex">
+                        <div className="flex w-3/4">
                           <input
                             type="text"
                             id="nppnrk"
-                            className="flex-grow border p-2"
+                            className="border-gray-300 w-full rounded-md border p-2"
                           />
-                          <button className="bg-gray-200 border p-2">
+                          <button className="bg-gray-200 ml-2 rounded-md border p-2">
                             <FontAwesomeIcon icon={faSearch} />
                           </button>
                         </div>
                       </div>
-                      <div className="mb-2">
-                        <label htmlFor="nama" className="block">
+
+                      <div className="flex items-center">
+                        <label className="text-gray-700 w-1/4">
                           Nama Lengkap:
                         </label>
                         <input
                           type="text"
-                          id="nama"
-                          className="w-full border p-2"
+                          className="border-gray-300 w-3/4 rounded-md border p-2"
                         />
                       </div>
-                      <div className="mb-2">
-                        <label htmlFor="jabatan" className="block">
-                          Jabatan:
-                        </label>
-                        <input
-                          type="text"
-                          id="jabatan"
-                          className="w-full border p-2"
-                        />
-                      </div>
-                      <div className="mb-2">
-                        <label htmlFor="pangkat" className="block">
-                          Pangkat/Gol.:
-                        </label>
-                        <input
-                          type="text"
-                          id="pangkat"
-                          className="w-full border p-2"
-                        />
-                      </div>
-                    </div>
 
-                    <div className="mb-4">
-                      <h2 className="font-bold">Informasi Pelaksanaan Tugas</h2>
-                      <div className="mb-2">
-                        <button className="w-full bg-blue-500 p-2 text-white">
-                          Lihat
-                        </button>
+                      <div className="flex items-center">
+                        <label className="text-gray-700 w-1/4">Jabatan:</label>
+                        <select className="border-gray-300 w-3/4 rounded-md border p-2">
+                          <option value=""></option>
+                        </select>
                       </div>
-                      <div className="mb-2">
-                        <button className="w-full bg-blue-500 p-2 text-white">
-                          Lihat
-                        </button>
+
+                      <div className="flex items-center">
+                        <label className="text-gray-700 w-1/4">
+                          Pangkat/Gol:
+                        </label>
+                        <input
+                          type="text"
+                          className="border-gray-300 w-3/4 rounded-md border p-2"
+                        />
                       </div>
-                      <div className="mb-2">
-                        <label htmlFor="batas" className="block">
+
+                      <div className=" grid grid-cols-2 gap-4">
+                        <h2 className="mb-4 text-lg font-bold">
+                          Informasi Pelaksana Tugas
+                        </h2>
+                      </div>
+
+                      <div className="flex items-center">
+                        <label className="text-gray-700 w-1/4">
+                          Data Kompetensi:
+                        </label>
+                        <div className="flex w-3/4 items-center space-x-2">
+                          <button className="rounded-md bg-blue-500 px-4 py-2 text-white">
+                            Lihat
+                          </button>
+                        </div>
+                      </div>
+
+                      <div className="flex items-center">
+                        <label className="text-gray-700 w-1/4">
+                          Data Kinerja:
+                        </label>
+                        <div className="flex w-3/4 items-center space-x-2">
+                          <button className="rounded-md bg-blue-500 px-4 py-2 text-white">
+                            Lihat
+                          </button>
+                        </div>
+                      </div>
+
+                      <div className="flex items-center">
+                        <label className="text-gray-700 w-1/4">
                           Batas Usia Pensiun:
                         </label>
                         <input
-                          type="text"
-                          id="batas"
-                          className="w-full border p-2"
-                          placeholder="DD/MM/YYYY"
+                          type="date"
+                          className="border-gray-300 w-3/4 rounded-md border p-2"
                         />
+                      </div>
+                      <div className="flex items-center">
+                        <label className="text-gray-700 w-1/4"></label>
                         <small className="text-gray-500 block">
                           Maks. 1 Tahun sebelum Batas Pensiun
                         </small>
                       </div>
-                    </div>
 
-                    <div className="mb-4">
-                      <h2 className="font-bold">Waktu</h2>
-                      <div className="mb-2">
-                        <label htmlFor="tanggalMulai" className="block">
+                      <div className=" grid grid-cols-2 gap-4">
+                        <h2 className="mb-4 text-lg font-bold">Waktu</h2>
+                      </div>
+
+                      <div className="flex items-center">
+                        <label className="text-gray-700 w-1/4">
                           Tanggal Mulai:
                         </label>
-                        <div className="flex">
-                          <input
-                            type="text"
-                            id="tanggalMulai"
-                            className="flex-grow border p-2"
-                            placeholder="DD/MM/YYYY"
-                          />
-                          <button className="bg-gray-200 border p-2">
-                            <FontAwesomeIcon icon={faCalendarAlt} />
-                          </button>
-                        </div>
+                        <input
+                          type="date"
+                          className="border-gray-300 w-3/4 rounded-md border p-2"
+                        />
                       </div>
-                      <div className="mb-2">
-                        <label htmlFor="tanggalSelesai" className="block">
+
+                      <div className="flex items-center">
+                        <label className="text-gray-700 w-1/4">
                           Tanggal Selesai:
                         </label>
-                        <div className="flex">
-                          <input
-                            type="text"
-                            id="tanggalSelesai"
-                            className="flex-grow border p-2"
-                            placeholder="DD/MM/YYYY"
-                          />
-                          <button className="bg-gray-200 border p-2">
-                            <FontAwesomeIcon icon={faCalendarAlt} />
-                          </button>
-                        </div>
-                      </div>
-                      <div className="mb-2">
-                        <label htmlFor="jumlahHari" className="block">
-                          Jumlah Hari / Bulan (Max. 13 Bulan):
-                        </label>
                         <input
-                          type="text"
-                          id="jumlahHari"
-                          className="w-full border p-2"
+                          type="date"
+                          className="border-gray-300 w-3/4 rounded-md border p-2"
                         />
+                      </div>
+                      <div className="flex items-center">
+                        <label className="text-gray-700 w-1/4"></label>
+                        <small className="text-gray-500 block">
+                          Jumlah Hari / Bulan (Max. 3 Bulan)
+                        </small>
                       </div>
                     </div>
                   </div>
@@ -370,59 +376,57 @@ export default function InputPengajuan() {
                   <div>
                     <div className=" grid grid-cols-2 gap-4">
                       <h2 className="mb-4 text-lg font-bold">
-                        Data Yang Berhalangan
+                        Pejabat Yang Berwenang Memberikan Penugasan
                       </h2>
                     </div>
-                    <div className="mb-6 grid grid-cols-2 gap-4">
-                      <div>
-                        <label htmlFor="nppnrk" className="block">
-                          NPP/NRK:
+                    <div className="mb-6 space-y-4">
+                      <div className="flex items-center">
+                        <label htmlFor="nipnrk" className="w-1/4">
+                          NIP/NRK:
                         </label>
-                        <div className="flex">
+                        <div className="flex w-3/4">
                           <input
                             type="text"
                             id="nppnrk"
                             className="border-gray-300 w-full rounded-md border p-2"
                           />
-                          <button className="bg-gray-200 rounded-md border p-2">
+                          <button className="bg-gray-200 ml-2 rounded-md border p-2">
                             <FontAwesomeIcon icon={faSearch} />
                           </button>
                         </div>
                       </div>
-                      <div></div>
-                      <div>
-                        <label className="text-gray-700 block">
+
+                      <div className="flex items-center">
+                        <label className="text-gray-700 w-1/4">
                           Nama Lengkap:
                         </label>
                         <input
                           type="text"
-                          className="border-gray-300 w-full rounded-md border p-2"
+                          className="border-gray-300 w-3/4 rounded-md border p-2"
                         />
                       </div>
-                      <div></div>
-                      <div>
-                        <label className="text-gray-700 block">Jabatan:</label>
-                        <input
-                          type="text"
-                          className="border-gray-300 w-full rounded-md border p-2"
-                        />
+
+                      <div className="flex items-center">
+                        <label className="text-gray-700 w-1/4">Jabatan:</label>
+                        <select className="border-gray-300 w-3/4 rounded-md border p-2">
+                          <option value=""></option>
+                        </select>
                       </div>
-                      <div></div>
-                      <div>
-                        <label className="text-gray-700 block">
+
+                      <div className="flex items-center">
+                        <label className="text-gray-700 w-1/4">
                           Pangkat/Gol:
                         </label>
                         <input
                           type="text"
-                          className="border-gray-300 w-full rounded-md border p-2"
+                          className="border-gray-300 w-3/4 rounded-md border p-2"
                         />
                       </div>
-                      <div></div>
-                      <div>
-                        <label className="text-gray-700 block">
-                          Upload Pendukung Alasan:
+                      <div className="flex items-center">
+                        <label className="text-gray-700 w-1/4">
+                          Upload Surat Perintah:
                         </label>
-                        <div className="flex items-center space-x-2">
+                        <div className="flex w-3/4 items-center space-x-2">
                           <button className="rounded-md bg-blue-500 px-4 py-2 text-white">
                             Lihat
                           </button>
@@ -431,39 +435,43 @@ export default function InputPengajuan() {
                           </button>
                           <span>No file chosen</span>
                         </div>
-                        <p className="text-gray-500 mt-1 text-sm">
-                          *Maksimum pdf size 3MB
-                        </p>
+                      </div>
+                      <div className="mt--2 flex items-center">
+                        <label className="text-gray-700 w-1/4"></label>
+                        <small className="text-gray-500 block">
+                          *Maksimum pdf size 1
+                        </small>
                       </div>
                     </div>
                   </div>
                 )}
 
                 {/* Navigasi langkah */}
-                <div className="flex justify-between">
-                  <button
-                    onClick={prevStep}
-                    className={`${
-                      step === 1 ? "hidden" : "bg-gray-200"
-                    } rounded-md px-4 py-2 text-white`}
-                  >
-                    Sebelumnya
-                  </button>
+                <div className="flex justify-end space-x-2">
+                  {step > 1 && (
+                    <button
+                      onClick={prevStep}
+                      className="bg-gray-200 rounded-md px-4 py-2 text-white"
+                    >
+                      Sebelumnya
+                    </button>
+                  )}
 
                   {step < 3 && (
                     <button
                       onClick={nextStep}
                       className="rounded-md bg-blue-500 px-4 py-2 text-white"
                     >
-                      Berikutnya
+                      Selanjutnya
                     </button>
                   )}
+
                   {step === 3 && (
                     <button
                       onClick={handleSubmit}
                       className="rounded-md bg-green-500 px-4 py-2 text-white"
                     >
-                      Submit
+                      Simpan
                     </button>
                   )}
                 </div>
@@ -474,7 +482,10 @@ export default function InputPengajuan() {
                   Detail Pengajuan Pelaksana Tugas (PLT)
                 </h1>
 
-                <Section title="Data Yang Berhalangan">
+                <Section
+                  title="Data Yang Berhalangan"
+                  titleClassName="bg-blue-500 text-white"
+                >
                   <FormRow label="NIP/NRK :" />
                   <FormRow label="Kode Alasan :" />
                   <FormRow label="Nama Lengkap :" />
@@ -494,7 +505,10 @@ export default function InputPengajuan() {
                   />
                 </Section>
 
-                <Section title="Data Pengajuan Pelaksana Tugas (PLT)">
+                <Section
+                  title="Data Pengajuan Pelaksana Tugas (PLT)"
+                  titleClassName="bg-blue-500 text-white"
+                >
                   <FormRow
                     label="Status Pengajuan"
                     isRadio
@@ -523,7 +537,10 @@ export default function InputPengajuan() {
                   <FormRow label="Jumlah Hari / Bulan (Max. 3 Bulan)" />
                 </Section>
 
-                <Section title="Pejabat Yang Berwenang Memberikan Penugasan">
+                <Section
+                  title="Pejabat Yang Berwenang Memberikan Penugasan"
+                  titleClassName="bg-blue-500 text-white"
+                >
                   <FormRow label="NIP/NRK :" />
                   <FormRow label="Nama Lengkap :" />
                   <FormRow label="Jabatan :" />
@@ -537,13 +554,13 @@ export default function InputPengajuan() {
 
                 <div className="mt-6 flex justify-between">
                   <button
-                    className="bg-gray-200 text-gray-700 rounded px-4 py-2"
+                    className="bg-white text-blue-500 rounded px-4 py-2 border"
                     onClick={handleBack}
                   >
                     ← Kembali
                   </button>
                   <button className="rounded bg-blue-500 px-4 py-2 text-white">
-                    Simpan
+                    Ajukan PLT
                   </button>
                 </div>
               </div>
@@ -575,70 +592,64 @@ const FormRow: React.FC<{
   isDate = false,
   fileName,
 }) => {
-  if (isTextArea) {
-    return (
-      <div className="mb-4">
-        <label className="block text-gray-700">{label}</label>
-        <textarea className="w-full border-gray-300 rounded-md border p-2" />
+  return (
+    <div className="mb-4 flex items-center">
+      <label className="text-gray-700 block w-1/3">{label}</label>
+      <div className="w-2/3">
+        {isTextArea ? (
+          <textarea className="border-gray-300 w-full rounded-md border p-2" />
+        ) : isSelect ? (
+          <select className="border-gray-300 w-full rounded-md border p-2">
+            {options.map((option, index) => (
+              <option key={index}>{option}</option>
+            ))}
+          </select>
+        ) : isRadio ? (
+          <div className="flex space-x-4">
+            {options.map((option, index) => (
+              <label key={index} className="flex items-center">
+                <input type="radio" className="mr-2" /> {option}
+              </label>
+            ))}
+          </div>
+        ) : isFile ? (
+          <div className="flex items-center">
+            <button className="bg-gray-200 text-gray-700 mr-2 rounded px-2 py-1">
+              Pilih File
+            </button>
+            <span className="text-sm">{fileName}</span>
+          </div>
+        ) : isDate ? (
+          <input
+            type="date"
+            className="border-gray-300 w-full rounded-md border p-2"
+          />
+        ) : (
+          <input
+            type="text"
+            className="border-gray-300 w-full rounded-md border p-2"
+          />
+        )}
       </div>
-    );
-  } else if (isSelect) {
-    return (
-      <div className="mb-4">
-        <label className="block text-gray-700">{label}</label>
-        <select className="w-full border-gray-300 rounded-md border p-2">
-          {options.map((option, index) => (
-            <option key={index}>{option}</option>
-          ))}
-        </select>
-      </div>
-    );
-  } else if (isRadio) {
-    return (
-      <div className="mb-4">
-        <label className="block text-gray-700">{label}</label>
-        <div className="flex space-x-4">
-          {options.map((option, index) => (
-            <label key={index} className="flex items-center">
-              <input type="radio" className="mr-2" /> {option}
-            </label>
-          ))}
-        </div>
-      </div>
-    );
-  } else if (isFile) {
-    return (
-      <div className="mb-4">
-        <label className="block text-gray-700">{label}</label>
-        <div className="flex items-center">
-          <button className="mr-2 bg-gray-200 text-gray-700 px-2 py-1 rounded">Pilih File</button>
-          <span className="text-sm">{fileName}</span>
-        </div>
-      </div>
-    );
-  } else if (isDate) {
-    return (
-      <div className="mb-4">
-        <label className="block text-gray-700">{label}</label>
-        <input type="date" className="w-full border-gray-300 rounded-md border p-2" />
-      </div>
-    );
-  } else {
-    return (
-      <div className="mb-4">
-        <label className="block text-gray-700">{label}</label>
-        <input type="text" className="w-full border-gray-300 rounded-md border p-2" />
-      </div>
-    );
-  }
+    </div>
+  );
 };
 
-// Komponen untuk Seksi Form
-const Section: React.FC<{ title: string; children: React.ReactNode }> = ({ title, children }) => {
+interface SectionProps {
+  title: string;
+  titleClassName?: string;
+  children: React.ReactNode;
+}
+
+const Section: React.FC<SectionProps> = ({
+  title,
+  titleClassName,
+  children,
+}) => {
   return (
-    <div className="mt-6">
-      <h2 className="font-bold mb-2">{title}</h2>
-      {children}
+    <div className="mb-6">
+      <h2 className={`text-lg rounded p-2 font-semibold ${titleClassName}`}>{title}</h2>
+      <div className="rounded p-4">{children}</div>
     </div>
   );
 };
