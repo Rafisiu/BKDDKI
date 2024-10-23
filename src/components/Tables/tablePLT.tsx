@@ -32,7 +32,7 @@ const Example = () => {
         size: 120,
       }),
       columnHelper.accessor("lastName", {
-        header: "Data Pengajuan Pelaksana Harian",
+        header: "Data Pengajuan Pelaksana Tugas",
         size: 120,
       }),
       columnHelper.accessor("company", {

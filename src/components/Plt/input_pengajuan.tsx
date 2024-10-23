@@ -245,6 +245,22 @@ export default function InputPengajuan() {
                         <label htmlFor="perpanjangan">Perpanjangan</label>
                       </div>
 
+                      <div className="flex items-center">
+                        <label htmlFor="nipnrk" className="w-1/4">
+                          No. Surat Perintah:
+                        </label>
+                        <div className="flex w-3/4">
+                          <input
+                            type="text"
+                            id="nppnrk"
+                            className="border-gray-300 w-full rounded-md border p-2"
+                          />
+                          <button className="bg-gray-200 ml-2 rounded-md border p-2">
+                            <FontAwesomeIcon icon={faSearch} />
+                          </button>
+                        </div>
+                      </div>
+
                       <div className=" grid grid-cols-2 gap-4">
                         <h2 className="text-lg font-bold">
                           Informasi Pelaksana Tugas
@@ -554,7 +570,7 @@ export default function InputPengajuan() {
 
                 <div className="mt-6 flex justify-between">
                   <button
-                    className="bg-white text-blue-500 rounded px-4 py-2 border"
+                    className="rounded border bg-white px-4 py-2 text-blue-500"
                     onClick={handleBack}
                   >
                     ← Kembali

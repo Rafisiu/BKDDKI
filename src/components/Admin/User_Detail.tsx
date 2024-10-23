@@ -47,7 +47,7 @@ return (
                     </div>
                     <div className="mb-4">
                         <label className="block text-gray-700 text-sm font-bold mb-2">Status:</label>
-                        <select className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                        <select className="border-gray-300 w-full rounded-md border p-2">
                             <option>Aktif</option>
                             <option>Non-Aktif</option>
                         </select>

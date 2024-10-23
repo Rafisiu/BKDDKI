@@ -1,4 +1,4 @@
-import PLH from "@/components/Plh/Plh";
+import InputPengajuan from "@/components/Plh/input_pengajuan";
 import { Metadata } from "next";
 import DefaultLayout from "@/components/Layouts/DefaultLayout";
 import Breadcrumb from "@/components/Breadcrumbs/BreadcrumbPlh";
@@ -13,7 +13,7 @@ export default function Home() {
     <>
       <DefaultLayout>
         <Breadcrumb pageName="Input Pengajuan" />
-        <PLH />
+        <InputPengajuan />
       </DefaultLayout>
     </>
   );

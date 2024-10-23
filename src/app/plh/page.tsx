@@ -1,4 +1,4 @@
-import PLH from "@/components/Plt/Plt";
+import PLH from "@/components/Plh/Plh";
 import { Metadata } from "next";
 import DefaultLayout from "@/components/Layouts/DefaultLayout";
 import Breadcrumb from "@/components/Breadcrumbs/BreadcrumbPlh";

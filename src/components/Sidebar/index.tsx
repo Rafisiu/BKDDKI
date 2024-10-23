@@ -407,6 +407,40 @@ const menuGroups = [
             label: "Input Pengajuan",
             route: "/plh/input_pengajuan",
           },
+          {
+            icon: (
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="#60a5fa"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M7 21C5.89543 21 5 20.1046 5 19V5C5 3.89543 5.89543 3 7 3H14L19 8V19C19 20.1046 18.1046 21 17 21H7Z"
+                  stroke="white"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M13 3V9H19"
+                  stroke="white"
+                  stroke-width="1.5"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M15 12L11 16L9 14"
+                  stroke="white"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            ),
+            label: "Verifikasi",
+            route: "/plh/verifikasi",
+          },
         ],
       },
       {
