@@ -1,4 +1,4 @@
-import Otoritas from "@/components/Admin/Otoritas";
+import ViewOPDBKD from "@/components/Admin/OPDBKD";
 import { Metadata } from "next";
 import DefaultLayout from "@/components/Layouts/DefaultLayout";
 import Breadcrumb from "@/components/Breadcrumbs/BreadcrumbAdmin";
@@ -8,15 +8,15 @@ export const metadata: Metadata = {
   description: "",
 };
 
-const Home = () => {
+const OPDBKD = () => {
   return (
     <>
       <DefaultLayout>
         <Breadcrumb pageName="OPD BKD" />
-        <Otoritas />
+        <ViewOPDBKD />
       </DefaultLayout>
     </>
   );
 };
 
-export default Home;
+export default OPDBKD;

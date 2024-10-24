@@ -1,4 +1,4 @@
-import Otoritas from "@/components/Admin/Otoritas";
+import ViewKode from "@/components/Admin/Kode";
 import { Metadata } from "next";
 import DefaultLayout from "@/components/Layouts/DefaultLayout";
 import Breadcrumb from "@/components/Breadcrumbs/BreadcrumbAdmin";
@@ -8,15 +8,15 @@ export const metadata: Metadata = {
   description: "",
 };
 
-const Home = () => {
+const Kode = () => {
   return (
     <>
       <DefaultLayout>
         <Breadcrumb pageName="Kode" />
-        <Otoritas />
+        <ViewKode />
       </DefaultLayout>
     </>
   );
 };
 
-export default Home;
+export default Kode;

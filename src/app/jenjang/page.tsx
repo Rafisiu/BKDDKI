@@ -1,4 +1,4 @@
-import Otoritas from "@/components/Admin/Otoritas";
+import ViewJenjang from "@/components/Admin/Jenjang";
 import { Metadata } from "next";
 import DefaultLayout from "@/components/Layouts/DefaultLayout";
 import Breadcrumb from "@/components/Breadcrumbs/BreadcrumbAdmin";
@@ -13,7 +13,7 @@ const Jenjang = () => {
     <>
       <DefaultLayout>
         <Breadcrumb pageName="Jenjang" />
-        <Otoritas />
+        <ViewJenjang />
       </DefaultLayout>
     </>
   );
