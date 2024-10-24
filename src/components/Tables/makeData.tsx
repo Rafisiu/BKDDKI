@@ -6,6 +6,8 @@ export type Person = {
   company: string;
   city: string;
   country: string;
+  tanggalVerifikasi: string;
+  tanggalValidasi: string;
 };
 
 export const data: Person[] = [
@@ -19,6 +21,8 @@ export const data: Person[] = [
     company: "DD-MM-YYYY sd  DD-MM-YYYY",
     city: "Verifikasi : DD-MM-YYYY Validasi : DD-MM-YYYY",
     country: "Verifikasi BKD/Suban",
+    tanggalVerifikasi: "02-01-2024",
+    tanggalValidasi: "06-01-2024",
   },
   {
     id: 2,
@@ -30,6 +34,8 @@ export const data: Person[] = [
     company: "DD-MM-YYYY sd  DD-MM-YYYY",
     city: "Verifikasi : DD-MM-YYYY Validasi : DD-MM-YYYY",
     country: "Verifikasi BKD/Suban",
+    tanggalVerifikasi: "02-01-2024",
+    tanggalValidasi: "06-01-2024",
   },
   {
     id: 3,
@@ -41,6 +47,8 @@ export const data: Person[] = [
     company: "DD-MM-YYYY sd  DD-MM-YYYY",
     city: "Verifikasi : DD-MM-YYYY Validasi : DD-MM-YYYY",
     country: "Verifikasi BKD/Suban",
+    tanggalVerifikasi: "02-01-2024",
+    tanggalValidasi: "06-01-2024",
   },
   {
     id: 4,
@@ -52,6 +60,8 @@ export const data: Person[] = [
     company: "DD-MM-YYYY sd  DD-MM-YYYY",
     city: "Verifikasi : DD-MM-YYYY Validasi : DD-MM-YYYY",
     country: "Verifikasi BKD/Suban",
+    tanggalVerifikasi: "02-01-2024",
+    tanggalValidasi: "06-01-2024",
   },
   {
     id: 5,
@@ -63,5 +73,7 @@ export const data: Person[] = [
     company: "DD-MM-YYYY sd  DD-MM-YYYY",
     city: "Verifikasi : DD-MM-YYYY Validasi : DD-MM-YYYY",
     country: "Verifikasi BKD/Suban",
+    tanggalVerifikasi: "02-01-2024",
+    tanggalValidasi: "06-01-2024",
   },
 ];
