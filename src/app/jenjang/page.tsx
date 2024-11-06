@@ -2,6 +2,7 @@ import ViewJenjang from "@/components/Admin/Jenjang";
 import { Metadata } from "next";
 import DefaultLayout from "@/components/Layouts/DefaultLayout";
 import Breadcrumb from "@/components/Breadcrumbs/BreadcrumbAdmin";
+import Loader from "@/components/common/Loader";
 
 export const metadata: Metadata = {
   title: "Jenjang",
