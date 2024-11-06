@@ -12,45 +12,107 @@ import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import FileDownloadIcon from "@mui/icons-material/FileDownload";
 import { mkConfig, generateCsv, download } from "export-to-csv";
 import { data, type Person } from "../../Tables/makeData";
+import { useRouter } from "next/navigation";
 
 const columnHelper = createMRTColumnHelper<Person>();
 
 const TableValidasi = () => {
-  // Memoize column definition to prevent unnecessary re-renders
+  const router = useRouter();
+  
   const columns = useMemo(
     () => [
       columnHelper.accessor("id", {
         header: "No",
         size: 5,
+        muiTableHeadCellProps: {
+          sx: {
+            padding: "1px",
+          },
+        },
+        muiTableBodyCellProps: {
+          sx: {
+            padding: "1px",
+          },
+        },
       }),
       columnHelper.accessor("tanggal", {
         header: "Tanggal Pengajuan",
-        size: 10,
+        size: 1,
+        muiTableHeadCellProps: {
+          sx: {
+            padding: "1px 1px",
+          },
+        },
+        muiTableBodyCellProps: {
+          sx: {
+            padding: "1px 1px",
+          },
+        },
       }),
       columnHelper.accessor("firstName", {
         header: "Data Yang Berhalangan",
         size: 120,
+        muiTableHeadCellProps: {
+          sx: {
+            padding: "5px 45px",
+          },
+        },
       }),
       columnHelper.accessor("lastName", {
         header: "Data Pengajuan Pelaksana Tugas",
         size: 120,
+        muiTableHeadCellProps: {
+          sx: {
+            padding: "5px 45px",
+          },
+        },
       }),
       columnHelper.accessor("company", {
         header: "Tanggal Mulai - Selesai",
-        size: 20,
+        size: 120,
+        muiTableHeadCellProps: {
+          sx: {
+            padding: "5px 65px",
+          },
+        },
       }),
       columnHelper.accessor("city", {
-        header: "Tanggal Validasi",
+        header: "Tanggal Verifikasi - Validasi",
         size: 20,
+        muiTableHeadCellProps: {
+          sx: {
+            padding: "5px 55px",
+          },
+        },
+        Cell: ({ row }: { row: MRT_Row<Person> }) => {
+          const verifikasi = row.original.tanggalVerifikasi; // Data verifikasi
+          const validasi = row.original.tanggalValidasi; // Data validasi
+          return (
+            <div>
+              <div>Verifikasi: {verifikasi}</div>
+              <div>Validasi: {validasi}</div>
+            </div>
+          );
+        },
       }),
       columnHelper.accessor("country", {
         header: "Status",
-        size: 220,
+        size: 20,
       }),
       columnHelper.display({
         id: "actions",
-        size: 220,
+        size: 20,
         header: "Actions",
+        muiTableHeadCellProps: {
+          sx: {
+            padding: "5px 10px",
+          },
+        },
+        muiTableBodyCellProps: {
+          sx: {
+            padding: "5px 10px",
+          },
+        },
         Cell: ({ row }: { row: MRT_Row<Person> }) => (
           <Box sx={{ display: "flex" }}>
             <Button
@@ -70,7 +132,7 @@ const TableValidasi = () => {
             <Button
               size="small"
               sx={{ padding: 0, margin: 0, minWidth: 0, marginRight: 0.5 }}
-              onClick={() => handleView(row.original)}
+              onClick={() => router.push("/plh/validasi/detail_pengajuan")}
             >
               <MoreHorizIcon fontSize="small" />
             </Button>
@@ -79,9 +141,8 @@ const TableValidasi = () => {
       }),
     ],
     [],
-  ); // No dependencies so it's memoized permanently
+  );
 
-  // Memoize the handler functions using useCallback
   const handleEdit = useCallback((person: Person) => {
     console.log("Edit clicked for:", person);
   }, []);

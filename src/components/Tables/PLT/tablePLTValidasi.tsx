@@ -12,73 +12,75 @@ import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import FileDownloadIcon from "@mui/icons-material/FileDownload";
 import { mkConfig, generateCsv, download } from "export-to-csv";
 import { data, type Person } from "../../Tables/makeData";
+import { useRouter } from "next/navigation";
 
 const columnHelper = createMRTColumnHelper<Person>();
 
 const TableValidasi = () => {
+const router = useRouter();
 // Memoize column definition to prevent unnecessary re-renders
 const columns = useMemo(
-    () => [
+  () => [
     columnHelper.accessor("id", {
-        header: "No",
-        size: 5,
+      header: "No",
+      size: 5,
     }),
     columnHelper.accessor("tanggal", {
-        header: "Tanggal Pengajuan",
-        size: 10,
+      header: "Tanggal Pengajuan",
+      size: 10,
     }),
     columnHelper.accessor("firstName", {
-        header: "Data Yang Berhalangan",
-        size: 120,
+      header: "Data Yang Berhalangan",
+      size: 120,
     }),
     columnHelper.accessor("lastName", {
-        header: "Data Pengajuan Pelaksana Tugas",
-        size: 120,
+      header: "Data Pengajuan Pelaksana Tugas",
+      size: 120,
     }),
     columnHelper.accessor("company", {
-        header: "Tanggal Mulai - Selesai",
-        size: 20,
+      header: "Tanggal Mulai - Selesai",
+      size: 20,
     }),
     columnHelper.accessor("city", {
-        header: "Tanggal Validasi",
-        size: 20,
+      header: "Tanggal Validasi",
+      size: 20,
     }),
     columnHelper.accessor("country", {
-        header: "Status",
-        size: 220,
+      header: "Status",
+      size: 220,
     }),
     columnHelper.display({
-        id: "actions",
-        size: 220,
-        header: "Actions",
-        Cell: ({ row }: { row: MRT_Row<Person> }) => (
+      id: "actions",
+      size: 220,
+      header: "Actions",
+      Cell: ({ row }: { row: MRT_Row<Person> }) => (
         <Box sx={{ display: "flex" }}>
-            <Button
+          <Button
             size="small"
             sx={{ padding: 0, margin: 0, minWidth: 0, marginRight: 0.5 }}
             onClick={() => handleEdit(row.original)}
-            >
+          >
             <EditIcon fontSize="small" />
-            </Button>
-            <Button
+          </Button>
+          <Button
             size="small"
             sx={{ padding: 0, margin: 0, minWidth: 0, marginRight: 0.5 }}
             onClick={() => handleDelete(row.original)}
-            >
+          >
             <DeleteIcon fontSize="small" />
-            </Button>
-            <Button
+          </Button>
+          <Button
             size="small"
             sx={{ padding: 0, margin: 0, minWidth: 0, marginRight: 0.5 }}
-            onClick={() => handleView(row.original)}
-            >
+            onClick={() => router.push("/plt/validasi/detail_pengajuan")}
+          >
             <MoreHorizIcon fontSize="small" />
-            </Button>
+          </Button>
         </Box>
-        ),
+      ),
     }),
-    ],
-    [],
+  ],
+  [],
 ); // No dependencies so it's memoized permanently
 
 // Memoize the handler functions using useCallback

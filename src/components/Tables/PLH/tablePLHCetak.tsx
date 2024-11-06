@@ -16,41 +16,100 @@ import { data, type Person } from "../../Tables/makeData";
 const columnHelper = createMRTColumnHelper<Person>();
 
 const TableCetak = () => {
-  // Memoize column definition to prevent unnecessary re-renders
   const columns = useMemo(
     () => [
       columnHelper.accessor("id", {
         header: "No",
         size: 5,
+        muiTableHeadCellProps: {
+          sx: {
+            padding: "1px",
+          },
+        },
+        muiTableBodyCellProps: {
+          sx: {
+            padding: "1px",
+          },
+        },
       }),
       columnHelper.accessor("tanggal", {
         header: "Tanggal Pengajuan",
-        size: 10,
+        size: 1,
+        muiTableHeadCellProps: {
+          sx: {
+            padding: "1px 1px",
+          },
+        },
+        muiTableBodyCellProps: {
+          sx: {
+            padding: "1px 1px",
+          },
+        },
       }),
       columnHelper.accessor("firstName", {
         header: "Data Yang Berhalangan",
         size: 120,
+        muiTableHeadCellProps: {
+          sx: {
+            padding: "5px 45px",
+          },
+        },
       }),
       columnHelper.accessor("lastName", {
         header: "Data Pengajuan Pelaksana Tugas",
         size: 120,
+        muiTableHeadCellProps: {
+          sx: {
+            padding: "5px 45px",
+          },
+        },
       }),
       columnHelper.accessor("company", {
         header: "Tanggal Mulai - Selesai",
-        size: 20,
+        size: 120,
+        muiTableHeadCellProps: {
+          sx: {
+            padding: "5px 65px",
+          },
+        },
       }),
       columnHelper.accessor("city", {
-        header: "Tanggal Verifikasi & Validasi",
+        header: "Tanggal Verifikasi - Validasi",
         size: 20,
+        muiTableHeadCellProps: {
+          sx: {
+            padding: "5px 55px",
+          },
+        },
+        Cell: ({ row }: { row: MRT_Row<Person> }) => {
+          const verifikasi = row.original.tanggalVerifikasi; // Data verifikasi
+          const validasi = row.original.tanggalValidasi; // Data validasi
+          return (
+            <div>
+              <div>Verifikasi: {verifikasi}</div>
+              <div>Validasi: {validasi}</div>
+            </div>
+          );
+        },
       }),
       columnHelper.accessor("country", {
         header: "Status",
-        size: 220,
+        size: 20,
       }),
       columnHelper.display({
         id: "actions",
-        size: 220,
+        size: 20,
         header: "Actions",
+        muiTableHeadCellProps: {
+          sx: {
+            padding: "5px 10px",
+          },
+        },
+        muiTableBodyCellProps: {
+          sx: {
+            padding: "5px 10px",
+          },
+        },
         Cell: ({ row }: { row: MRT_Row<Person> }) => (
           <Box sx={{ display: "flex" }}>
             <Button
@@ -79,9 +138,8 @@ const TableCetak = () => {
       }),
     ],
     [],
-  ); // No dependencies so it's memoized permanently
+  );
 
-  // Memoize the handler functions using useCallback
   const handleEdit = useCallback((person: Person) => {
     console.log("Edit clicked for:", person);
   }, []);

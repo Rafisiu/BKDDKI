@@ -79,7 +79,7 @@ const TableInput = () => {
       }),
     ],
     [],
-  ); // No dependencies so it's memoized permanently
+  ); 
 
   // Memoize the handler functions using useCallback
   const handleEdit = useCallback((person: Person) => {
