@@ -1,4 +1,4 @@
-import { useMemo, useCallback } from "react";
+import { useState, useEffect, useMemo, useCallback } from "react";
 import {
     MaterialReactTable,
     useMaterialReactTable,
@@ -10,168 +10,134 @@ import { Box, Button } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit"; // Impor ikon Edit
 import DeleteIcon from "@mui/icons-material/Delete"; // Impor ikon Delete
 import { useRouter } from "next/navigation";
+import axios from "axios";
+import Cookies from "js-cookie";
 
-const columnHelper = createMRTColumnHelper<Person>();
+const columnHelper = createMRTColumnHelper<Jenjang>();
 
-type Person = {
-    name: {
-        firstName: string;
-        lastName: string;
-    };
-    address: string;
-    city: string;
-    status: string; // Kolom status
-    startYear: number; // Kolom Tahun Berlaku
-    endYear: number; // Kolom Tahun Berakhir
-    keterangan: string; // Kolom Keterangan
+type Jenjang = {
+  i_id: number;
+  n_menu: string;
+  e_menu: string | null;
+  n_link: string | null;
+  c_tipe_menu: string;
+  c_aktif: string;
 };
 
-const data: Person[] = [
-    {
-        name: {
-            firstName: "SKPD-INPUT-PENGAJUAN",
-            lastName: "SKPD Input Pengajuan",
-        },
-        address: "-Dashboard Input -Pengajuan PLT -Input Pengajuan PLH",
-        city: "Aktif",
-        status: "Completed", // Tambahkan status
-        startYear: 2022, // Tambahkan tahun berlaku
-        endYear: 2024, // Tambahkan tahun berakhir
-        keterangan: "Dokumen telah disetujui", // Tambahkan keterangan
-    },
-    {
-        name: {
-            firstName: "SKPD-INPUT-PENGAJUAN",
-            lastName: "SKPD Input Pengajuan",
-        },
-        address: "-Dashboard Input -Pengajuan PLT -Input Pengajuan PLH",
-        city: "Aktif",
-        status: "Pending", // Tambahkan status
-        startYear: 2021, // Tambahkan tahun berlaku
-        endYear: 2023, // Tambahkan tahun berakhir
-        keterangan: "Menunggu persetujuan", // Tambahkan keterangan
-    },
-    {
-        name: {
-            firstName: "SKPD-INPUT-PENGAJUAN",
-            lastName: "SKPD Input Pengajuan",
-        },
-        address: "-Dashboard Input -Pengajuan PLT -Input Pengajuan PLH",
-        city: "Aktif",
-        status: "Completed", // Tambahkan status
-        startYear: 2020, // Tambahkan tahun berlaku
-        endYear: 2022, // Tambahkan tahun berakhir
-        keterangan: "Dokumen telah disetujui", // Tambahkan keterangan
-    },
-    {
-        name: {
-            firstName: "SKPD-INPUT-PENGAJUAN",
-            lastName: "SKPD Input Pengajuan",
-        },
-        address: "-Dashboard Input -Pengajuan PLT -Input Pengajuan PLH",
-        city: "Aktif",
-        status: "In Progress", // Tambahkan status
-        startYear: 2023, // Tambahkan tahun berlaku
-        endYear: 2025, // Tambahkan tahun berakhir
-        keterangan: "Dokumen sedang diproses", // Tambahkan keterangan
-    },
-    {
-        name: {
-            firstName: "SKPD-INPUT-PENGAJUAN",
-            lastName: "SKPD Input Pengajuan",
-        },
-        address: "-Dashboard Input -Pengajuan PLT -Input Pengajuan PLH",
-        city: "Aktif",
-        status: "Pending", // Tambahkan status
-        startYear: 2019, // Tambahkan tahun berlaku
-        endYear: 2021, // Tambahkan tahun berakhir
-        keterangan: "Menunggu persetujuan", // Tambahkan keterangan
-    },
-];
+interface TableJenjangProps {
+  selectedMenu: string;
+}
 
-const TableJenjang = () => {
+const TableJenjang = ({ selectedMenu }: TableJenjangProps) => {
     const router = useRouter();
+    const [data, setData] = useState<Jenjang[]>([]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+        try {
+            const token = Cookies.get("token");
+
+            if (!token) {
+            console.error("Token not found in cookies");
+            return;
+            }
+
+            const endpoint = `/api/jenjang/list?parent=${selectedMenu}`;
+            const response = await axios.get(endpoint, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json",
+            },
+            });
+
+            setData(response.data.data); // Menyimpan data dari API
+        } catch (error) {
+            console.error("Error fetching data:", error);
+        }
+        };
+
+        fetchData();
+    }, [selectedMenu]);
 
     // Memoize the detail function
     const detail = useCallback(() => {
         router.push("/admin/user_management/detail");
     }, [router]);
 
-    const columns = useMemo<MRT_ColumnDef<Person>[]>(() => {
+    const columns = useMemo<MRT_ColumnDef<Jenjang>[]>(() => {
         return [
-        {
+          {
             accessorKey: "index",
             header: "No",
             size: 50,
             Cell: ({ row }) => row.index + 1,
-        },
-        {
-            accessorKey: "name.firstName",
+          },
+          {
+            accessorKey: "c_asgauth_group",
             header: "Kelompok",
             size: 150,
-        },
-        {
-            accessorKey: "name.lastName",
+          },
+          {
+            accessorKey: "n_asgauth_jabatan",
             header: "Nama Jabatan",
             size: 150,
-        },
-        {
-            accessorKey: "address",
+          },
+          {
+            accessorKey: "n_asgauth_plh",
             header: "TTD PLH",
             size: 200,
-        },
-        {
-            accessorKey: "city",
+          },
+          {
+            accessorKey: "n_asgauth_plt",
             header: "TTD PLT",
             size: 150,
-        },
-        {
-            accessorKey: "keterangan", // Kolom Keterangan
-            header: "Keterangan",
-            size: 200,
-        },
-        {
-            accessorKey: "status", // Kolom status
+          },
+          {
+            accessorKey: "c_aktif",
             header: "Status",
             size: 100,
-        },
-        {
-            accessorKey: "startYear", // Kolom tahun berlaku
+            Cell: ({ cell }) =>
+              cell.getValue() === "true" || cell.getValue() === true
+                ? "Aktif"
+                : "Tidak Aktif",
+          },
+          {
+            accessorKey: "c_tahun_berlaku", // Kolom tahun berlaku
             header: "Tahun Berlaku",
             size: 100,
-        },
-        {
-            accessorKey: "endYear", // Kolom tahun berakhir
+          },
+          {
+            accessorKey: "c_tahun_berakhir", // Kolom tahun berakhir
             header: "Tahun Berakhir",
             size: 100,
-        },
-        columnHelper.display({
+          },
+          columnHelper.display({
             id: "actions",
             size: 10,
             header: "Actions",
-            Cell: ({ row }: { row: MRT_Row<Person> }) => (
-            <Box sx={{ display: "flex" }}>
+            Cell: ({ row }: { row: MRT_Row<Jenjang> }) => (
+              <Box sx={{ display: "flex" }}>
                 <Button
-                onClick={detail}
-                sx={{ padding: 0, margin: 0, minWidth: 0, marginRight: 0.5 }}
+                  onClick={detail}
+                  sx={{ padding: 0, margin: 0, minWidth: 0, marginRight: 0.5 }}
                 >
-                <EditIcon fontSize="small" />
+                  <EditIcon fontSize="small" />
                 </Button>
                 <Button
-                sx={{ padding: 0, margin: 0, minWidth: 0, marginRight: 0.5 }}
+                  sx={{ padding: 0, margin: 0, minWidth: 0, marginRight: 0.5 }}
                 >
-                <DeleteIcon fontSize="small" />
+                  <DeleteIcon fontSize="small" />
                 </Button>
-            </Box>
+              </Box>
             ),
-        }),
+          }),
         ];
     }, [detail]);
 
     // Memoize data with index
     const dataWithIndex = useMemo(
         () => data.map((item, index) => ({ index, ...item })),
-        [],
+        [data],
     );
 
     const table = useMaterialReactTable({

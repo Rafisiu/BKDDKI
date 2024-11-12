@@ -11,6 +11,7 @@
   "dependencies": {
     "@emotion/react": "^11.13.3",
     "@emotion/styled": "^11.13.0",
+    "@fortawesome/fontawesome-free": "^6.6.0",
     "@fortawesome/fontawesome-svg-core": "^6.6.0",
     "@fortawesome/free-solid-svg-icons": "^6.6.0",
     "@fortawesome/react-fontawesome": "^0.2.2",
@@ -18,16 +19,23 @@
     "@mui/material": "^6.1.1",
     "@mui/x-date-pickers": "^7.18.0",
     "apexcharts": "^3.45.2",
+    "axios": "^1.7.7",
+    "cookie": "^1.0.1",
     "export-to-csv": "^1.4.0",
     "flatpickr": "^4.6.13",
+    "js-cookie": "^3.0.5",
     "jsvectormap": "^1.6.0",
     "material-react-table": "^3.0.1",
     "next": "^14.2.13",
     "react": "^18.3.1",
     "react-apexcharts": "^1.4.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "sweetalert2": "^11.14.5"
   },
   "devDependencies": {
+    "@types/axios": "^0.14.4",
+    "@types/cookie": "^1.0.0",
+    "@types/js-cookie": "^3.0.6",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

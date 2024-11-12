@@ -15,7 +15,7 @@ interface SidebarProps {
 
 const menuGroups = [
   {
-    name: "MENU ADMIN",
+    name: "Dashboard",
     menuItems: [
       {
         icon: (
@@ -48,116 +48,121 @@ const menuGroups = [
         label: "Dashboard",
         route: "/dashboard/admin",
       },
-      {
-        icon: (
-          <svg
-            className="fill-current"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M9.15957 10.87C9.05957 10.86 8.93957 10.86 8.82957 10.87C6.44957 10.79 4.55957 8.84 4.55957 6.44C4.55957 3.99 6.53957 2 8.99957 2C11.4496 2 13.4396 3.99 13.4396 6.44C13.4296 8.84 11.5396 10.79 9.15957 10.87Z"
-              stroke=""
-              stroke-width="1.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-            <path
-              d="M16.4103 4C18.3503 4 19.9103 5.57 19.9103 7.5C19.9103 9.39 18.4103 10.93 16.5403 11C16.4603 10.99 16.3703 10.99 16.2803 11"
-              stroke=""
-              stroke-width="1.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-            <path
-              d="M4.15973 14.56C1.73973 16.18 1.73973 18.82 4.15973 20.43C6.90973 22.27 11.4197 22.27 14.1697 20.43C16.5897 18.81 16.5897 16.17 14.1697 14.56C11.4297 12.73 6.91973 12.73 4.15973 14.56Z"
-              stroke=""
-              stroke-width="1.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-            <path
-              d="M18.3398 20C19.0598 19.85 19.7398 19.56 20.2998 19.13C21.8598 17.96 21.8598 16.03 20.2998 14.86C19.7498 14.44 19.0798 14.16 18.3698 14"
-              stroke=""
-              stroke-width="1.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-          </svg>
-        ),
-        label: "Admin",
-        route: "#",
-        children: [
-          {
-            icon: (
-              <svg
-                className="fill-current"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M12.16 10.87C12.06 10.86 11.94 10.86 11.83 10.87C9.45 10.79 7.56 8.84 7.56 6.44C7.56 3.99 9.54 2 12 2C14.45 2 16.44 3.99 16.44 6.44C16.43 8.84 14.54 10.79 12.16 10.87Z"
-                  stroke="white"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M7.16 14.56C4.74 16.18 4.74 18.82 7.16 20.43C9.91 22.27 14.42 22.27 17.17 20.43C19.59 18.81 19.59 16.17 17.17 14.56C14.43 12.73 9.92 12.73 7.16 14.56Z"
-                  stroke="white"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </svg>
-            ),
-            label: "User Management",
-            route: "/admin/user_management",
-          },
-          {
-            icon: (
-              <svg
-                className=""
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M10.49 2.22957L5.50003 4.09957C4.35003 4.52957 3.41003 5.88955 3.41003 7.11955V14.5495C3.41003 15.7295 4.19005 17.2795 5.14005 17.9895L9.44003 21.1996C10.85 22.2596 13.17 22.2596 14.58 21.1996L18.88 17.9895C19.83 17.2795 20.61 15.7295 20.61 14.5495V7.11955C20.61 5.88955 19.67 4.52957 18.52 4.09957L13.53 2.22957C12.68 1.91957 11.32 1.91957 10.49 2.22957Z"
-                  stroke="white"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M12.0001 10.9204C11.9601 10.9204 11.9101 10.9204 11.8701 10.9204C10.9301 10.8904 10.1801 10.1104 10.1801 9.1604C10.1801 8.1904 10.9701 7.40039 11.9401 7.40039C12.9101 7.40039 13.7001 8.1904 13.7001 9.1604C13.6901 10.1204 12.9401 10.8904 12.0001 10.9204Z"
-                  stroke="white"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M10.01 13.7204C9.05004 14.3604 9.05004 15.4103 10.01 16.0503C11.1 16.7803 12.89 16.7803 13.98 16.0503C14.94 15.4103 14.94 14.3604 13.98 13.7204C12.9 12.9904 11.11 12.9904 10.01 13.7204Z"
-                  stroke="white"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </svg>
-            ),
-            label: "Otoritas",
-            route: "/admin/otoritas",
-          },
-        ],
-      },
+    ],
+  },
+  {
+    name: "MENU ADMIN",
+    menuItems: [
+      // {
+      //   icon: (
+      //     <svg
+      //       className="fill-current"
+      //       width="24"
+      //       height="24"
+      //       viewBox="0 0 24 24"
+      //       fill="none"
+      //       xmlns="http://www.w3.org/2000/svg"
+      //     >
+      //       <path
+      //         d="M9.15957 10.87C9.05957 10.86 8.93957 10.86 8.82957 10.87C6.44957 10.79 4.55957 8.84 4.55957 6.44C4.55957 3.99 6.53957 2 8.99957 2C11.4496 2 13.4396 3.99 13.4396 6.44C13.4296 8.84 11.5396 10.79 9.15957 10.87Z"
+      //         stroke=""
+      //         stroke-width="1.5"
+      //         stroke-linecap="round"
+      //         stroke-linejoin="round"
+      //       />
+      //       <path
+      //         d="M16.4103 4C18.3503 4 19.9103 5.57 19.9103 7.5C19.9103 9.39 18.4103 10.93 16.5403 11C16.4603 10.99 16.3703 10.99 16.2803 11"
+      //         stroke=""
+      //         stroke-width="1.5"
+      //         stroke-linecap="round"
+      //         stroke-linejoin="round"
+      //       />
+      //       <path
+      //         d="M4.15973 14.56C1.73973 16.18 1.73973 18.82 4.15973 20.43C6.90973 22.27 11.4197 22.27 14.1697 20.43C16.5897 18.81 16.5897 16.17 14.1697 14.56C11.4297 12.73 6.91973 12.73 4.15973 14.56Z"
+      //         stroke=""
+      //         stroke-width="1.5"
+      //         stroke-linecap="round"
+      //         stroke-linejoin="round"
+      //       />
+      //       <path
+      //         d="M18.3398 20C19.0598 19.85 19.7398 19.56 20.2998 19.13C21.8598 17.96 21.8598 16.03 20.2998 14.86C19.7498 14.44 19.0798 14.16 18.3698 14"
+      //         stroke=""
+      //         stroke-width="1.5"
+      //         stroke-linecap="round"
+      //         stroke-linejoin="round"
+      //       />
+      //     </svg>
+      //   ),
+      //   label: "Admin",
+      //   route: "#",
+      //   children: [
+      //     {
+      //       icon: (
+      //         <svg
+      //           className="fill-current"
+      //           width="24"
+      //           height="24"
+      //           viewBox="0 0 24 24"
+      //           fill="none"
+      //           xmlns="http://www.w3.org/2000/svg"
+      //         >
+      //           <path
+      //             d="M12.16 10.87C12.06 10.86 11.94 10.86 11.83 10.87C9.45 10.79 7.56 8.84 7.56 6.44C7.56 3.99 9.54 2 12 2C14.45 2 16.44 3.99 16.44 6.44C16.43 8.84 14.54 10.79 12.16 10.87Z"
+      //             stroke="white"
+      //             stroke-width="1.5"
+      //             stroke-linecap="round"
+      //             stroke-linejoin="round"
+      //           />
+      //           <path
+      //             d="M7.16 14.56C4.74 16.18 4.74 18.82 7.16 20.43C9.91 22.27 14.42 22.27 17.17 20.43C19.59 18.81 19.59 16.17 17.17 14.56C14.43 12.73 9.92 12.73 7.16 14.56Z"
+      //             stroke="white"
+      //             stroke-width="1.5"
+      //             stroke-linecap="round"
+      //             stroke-linejoin="round"
+      //           />
+      //         </svg>
+      //       ),
+      //       label: "User Management",
+      //       route: "/admin/user_management",
+      //     },
+      //     {
+      //       icon: (
+      //         <svg
+      //           className=""
+      //           width="24"
+      //           height="24"
+      //           viewBox="0 0 24 24"
+      //           fill="none"
+      //           xmlns="http://www.w3.org/2000/svg"
+      //         >
+      //           <path
+      //             d="M10.49 2.22957L5.50003 4.09957C4.35003 4.52957 3.41003 5.88955 3.41003 7.11955V14.5495C3.41003 15.7295 4.19005 17.2795 5.14005 17.9895L9.44003 21.1996C10.85 22.2596 13.17 22.2596 14.58 21.1996L18.88 17.9895C19.83 17.2795 20.61 15.7295 20.61 14.5495V7.11955C20.61 5.88955 19.67 4.52957 18.52 4.09957L13.53 2.22957C12.68 1.91957 11.32 1.91957 10.49 2.22957Z"
+      //             stroke="white"
+      //             stroke-width="1.5"
+      //             stroke-linecap="round"
+      //             stroke-linejoin="round"
+      //           />
+      //           <path
+      //             d="M12.0001 10.9204C11.9601 10.9204 11.9101 10.9204 11.8701 10.9204C10.9301 10.8904 10.1801 10.1104 10.1801 9.1604C10.1801 8.1904 10.9701 7.40039 11.9401 7.40039C12.9101 7.40039 13.7001 8.1904 13.7001 9.1604C13.6901 10.1204 12.9401 10.8904 12.0001 10.9204Z"
+      //             stroke="white"
+      //             stroke-width="1.5"
+      //             stroke-linecap="round"
+      //             stroke-linejoin="round"
+      //           />
+      //           <path
+      //             d="M10.01 13.7204C9.05004 14.3604 9.05004 15.4103 10.01 16.0503C11.1 16.7803 12.89 16.7803 13.98 16.0503C14.94 15.4103 14.94 14.3604 13.98 13.7204C12.9 12.9904 11.11 12.9904 10.01 13.7204Z"
+      //             stroke="white"
+      //             stroke-width="1.5"
+      //             stroke-linecap="round"
+      //             stroke-linejoin="round"
+      //           />
+      //         </svg>
+      //       ),
+      //       label: "Otoritas",
+      //       route: "/admin/otoritas",
+      //     },
+      //   ],
+      // },
       {
         icon: (
           <svg
@@ -1134,16 +1139,74 @@ const menuGroups = [
 const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
   const pathname = usePathname();
   const [pageName, setPageName] = useLocalStorage("selectedMenu", "dashboard");
+  const [userGroup, setUserGroup] = useState<string | null>(null);
+  const [menuPermissions, setMenuPermissions] = useState<number[]>([]);
+
+  // Retrieve and set user group and menu permissions from localStorage
+  useEffect(() => {
+    const storedUserGroup = localStorage.getItem("user_group_id");
+    setUserGroup(storedUserGroup);
+
+    const storedPermissions = localStorage.getItem("permission_menu_ids");
+    if (storedPermissions) {
+      setMenuPermissions(JSON.parse(storedPermissions));
+    }
+  }, []);
+
+  // Filter menu groups based on user group and permission menu IDs
+  const filteredMenuGroups = () => {
+    if (userGroup === "20") {
+      // For ADMIN group, filter menu items based on permission IDs
+      const adminMenuItems = menuGroups
+        .find((group) => group.name === "MENU ADMIN")
+        ?.menuItems.filter((menuItem) => {
+          switch (menuItem.label) {
+            case "User - Menu":
+              return menuPermissions.includes(21);
+            case "Menu":
+              return menuPermissions.includes(22);
+            case "Kode":
+              return menuPermissions.includes(23);
+            case "OPD BKD":
+              return menuPermissions.includes(24);
+            case "Jenjang":
+              return menuPermissions.includes(25);
+            default:
+              return false;
+          }
+        });
+
+      return adminMenuItems
+        ? [{ name: "MENU ADMIN", menuItems: adminMenuItems }]
+        : [];
+    } else if (userGroup === "1") {
+      // For Dashboard group, show only the Dashboard item if permission ID 2 is available
+      const dashboardMenuItems = menuGroups
+        .find((group) => group.name === "Dashboard")
+        ?.menuItems.filter(
+          (menuItem) =>
+            menuPermissions.includes(2) && menuItem.label === "Dashboard",
+        );
+
+      return dashboardMenuItems
+        ? [{ name: "Dashboard", menuItems: dashboardMenuItems }]
+        : [];
+    } else {
+      return menuGroups.filter(
+        (group) => group.name !== "MENU ADMIN" && group.name !== "Dashboard",
+      );
+    }
+  };
 
   return (
     <ClickOutside onClick={() => setSidebarOpen(false)}>
       <aside
-        className={`overflow-y-hidde fixed left-0 top-0 z-9999 flex h-screen w-72.5 flex-col duration-300 ease-linear dark:bg-boxdark lg:translate-x-0 ${
+        className={`fixed left-0 top-0 z-9999 flex h-screen w-72.5 flex-col overflow-y-hidden duration-300 ease-linear dark:bg-boxdark lg:translate-x-0 ${
           sidebarOpen ? "translate-x-0" : "-translate-x-full"
         }`}
         style={{ backgroundColor: "#4679CC" }}
       >
-        {/* <!-- SIDEBAR HEADER --> */}
+        {/* Sidebar Header */}
         <div className="flex items-center justify-between gap-2 px-6 py-5.5 lg:py-6.5">
           <div className="flex items-center gap-2">
             <Link href="/">
@@ -1159,7 +1222,6 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
               BKDDKI
             </h1>
           </div>
-
           <button
             onClick={() => setSidebarOpen(!sidebarOpen)}
             aria-controls="sidebar"
@@ -1180,17 +1242,14 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
             </svg>
           </button>
         </div>
-        {/* <!-- SIDEBAR HEADER --> */}
-
+        {/* Sidebar Content */}
         <div className="no-scrollbar flex flex-col overflow-y-auto duration-300 ease-linear">
-          {/* <!-- Sidebar Menu --> */}
           <nav className="mt-5 px-4 py-4 lg:mt-9 lg:px-6">
-            {menuGroups.map((group, groupIndex) => (
+            {filteredMenuGroups().map((group, groupIndex) => (
               <div key={groupIndex}>
                 <h3 className="mb-4 ml-4 text-sm font-semibold text-bodydark1">
                   {group.name}
                 </h3>
-
                 <ul className="mb-6 flex flex-col gap-1.5">
                   {group.menuItems.map((menuItem, menuIndex) => (
                     <SidebarItem
@@ -1204,7 +1263,6 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
               </div>
             ))}
           </nav>
-          {/* <!-- Sidebar Menu --> */}
         </div>
       </aside>
     </ClickOutside>

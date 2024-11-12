@@ -1,4 +1,4 @@
-import { useMemo, useCallback } from "react";
+import { useState, useEffect, useMemo, useCallback } from "react";
 import {
     MaterialReactTable,
     useMaterialReactTable,
@@ -10,10 +10,12 @@ import { Box, Button } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit"; // Impor ikon Edit
 import DeleteIcon from "@mui/icons-material/Delete"; // Impor ikon Delete
 import { useRouter } from "next/navigation";
+import axios from "axios";
+import Cookies from "js-cookie";
 
-const columnHelper = createMRTColumnHelper<Person>();
+const columnHelper = createMRTColumnHelper<OPDBKD>();
 
-type Person = {
+type OPDBKD = {
     kodeOpd: string; // Kode OPD
     kodeOpdDdn: string; // Kode OPD DDN
     kodeUnit: string; // Kode Unit
@@ -27,83 +29,42 @@ type Person = {
     endYear: number; // Tahun Berakhir
 };
 
-const data: Person[] = [
-    {
-        kodeOpd: "1234",
-        kodeOpdDdn: "5678",
-        kodeUnit: "91011",
-        namaOpd: "Dinas Pendidikan",
-        singkatanBkd: "Disdik",
-        status: "Aktif",
-        wilayah: "Jakarta",
-        level: "Provinsi",
-        alamat: "Jl. Sudirman No. 1",
-        startYear: 2020,
-        endYear: 2024,
-    },
-    {
-        kodeOpd: "2345",
-        kodeOpdDdn: "6789",
-        kodeUnit: "111213",
-        namaOpd: "Dinas Kesehatan",
-        singkatanBkd: "Dinkes",
-        status: "Nonaktif",
-        wilayah: "Bandung",
-        level: "Kota",
-        alamat: "Jl. Asia Afrika No. 15",
-        startYear: 2018,
-        endYear: 2022,
-    },
-    {
-        kodeOpd: "3456",
-        kodeOpdDdn: "7890",
-        kodeUnit: "121314",
-        namaOpd: "Dinas Pertanian",
-        singkatanBkd: "Distan",
-        status: "Aktif",
-        wilayah: "Semarang",
-        level: "Provinsi",
-        alamat: "Jl. Diponegoro No. 99",
-        startYear: 2021,
-        endYear: 2025,
-    },
-    {
-        kodeOpd: "4567",
-        kodeOpdDdn: "8901",
-        kodeUnit: "141516",
-        namaOpd: "Dinas Pekerjaan Umum",
-        singkatanBkd: "PU",
-        status: "Aktif",
-        wilayah: "Surabaya",
-        level: "Kota",
-        alamat: "Jl. Pahlawan No. 2",
-        startYear: 2019,
-        endYear: 2023,
-    },
-    {
-        kodeOpd: "5678",
-        kodeOpdDdn: "9012",
-        kodeUnit: "151617",
-        namaOpd: "Dinas Sosial",
-        singkatanBkd: "Dinsos",
-        status: "Aktif",
-        wilayah: "Medan",
-        level: "Provinsi",
-        alamat: "Jl. Gatot Subroto No. 45",
-        startYear: 2022,
-        endYear: 2026,
-    },
-];
-
 const TableOPDBKD = () => {
     const router = useRouter();
+    const [data, setData] = useState<OPDBKD[]>([]);
+
+    useEffect(() => {
+      const fetchData = async () => {
+        try {
+          const token = Cookies.get("token");
+
+          if (!token) {
+            console.error("Token not found in cookies");
+            return;
+          }
+
+          const response = await axios.get("/api/opdbkd/list", {
+            headers: {
+              Authorization: `Bearer ${token}`,
+              "Content-Type": "application/json",
+            },
+          });
+
+          setData(response.data.data); // Menyimpan data dari API
+        } catch (error) {
+          console.error("Error fetching data:", error);
+        }
+      };
+
+      fetchData();
+    }, []);
 
     // Memoize the detail function
     const detail = useCallback(() => {
         router.push("/admin/user_management/detail");
     }, [router]);
 
-    const columns = useMemo<MRT_ColumnDef<Person>[]>(() => {
+    const columns = useMemo<MRT_ColumnDef<OPDBKD>[]>(() => {
     return [
         {
             accessorKey: "index",
@@ -123,7 +84,7 @@ const TableOPDBKD = () => {
             Cell: ({ row }) => row.index + 1,
         },
         {
-            accessorKey: "kodeOpd",
+            accessorKey: "c_opd",
             header: "Kode OPD",
             size: 150,
             muiTableHeadCellProps: {
@@ -138,7 +99,7 @@ const TableOPDBKD = () => {
             },
         },
         {
-            accessorKey: "kodeOpdDdn",
+            accessorKey: "c_opd_ddn",
             header: "Kode OPD DDN",
             size: 150,
             muiTableHeadCellProps: {
@@ -153,7 +114,7 @@ const TableOPDBKD = () => {
             },
         },
         {
-            accessorKey: "kodeUnit",
+            accessorKey: "c_unitkerja",
             header: "Kode Unit",
             size: 30,
             muiTableHeadCellProps: {
@@ -168,7 +129,7 @@ const TableOPDBKD = () => {
             },
         },
         {
-            accessorKey: "namaOpd",
+            accessorKey: "n_opd",
             header: "Nama OPD",
             size: 150,
             muiTableHeadCellProps: {
@@ -183,7 +144,7 @@ const TableOPDBKD = () => {
             },
         },
         {
-            accessorKey: "singkatanBkd",
+            accessorKey: "n_opd_pendek",
             header: "Singkatan BKD",
             size: 10,
             muiTableHeadCellProps: {
@@ -198,9 +159,10 @@ const TableOPDBKD = () => {
             },
         },
         {
-            accessorKey: "status",
+            accessorKey: "c_aktif",
             header: "Status",
             size: 100,
+            Cell: ({ cell }) => (cell.getValue() === "true" ? "Aktif" : "Tidak Aktif"),
             muiTableHeadCellProps: {
                 sx: {
                     padding: "8px", // Padding untuk header Status
@@ -213,7 +175,7 @@ const TableOPDBKD = () => {
             },
         },
         {
-            accessorKey: "wilayah",
+            accessorKey: "c_wil",
             header: "Wilayah",
             size: 100,
             muiTableHeadCellProps: {
@@ -228,7 +190,7 @@ const TableOPDBKD = () => {
             },
         },
         {
-            accessorKey: "level",
+            accessorKey: "c_opd_level",
             header: "Level",
             size: 100,
             muiTableHeadCellProps: {
@@ -243,7 +205,7 @@ const TableOPDBKD = () => {
             },
         },
         {
-            accessorKey: "alamat",
+            accessorKey: "a_opd",
             header: "Alamat",
             size: 200,
             muiTableHeadCellProps: {
@@ -258,32 +220,32 @@ const TableOPDBKD = () => {
             },
         },
         {
-            accessorKey: "startYear",
+            accessorKey: "c_tahun_berlaku",
             header: "Tahun Berlaku",
             size: 100,
             muiTableHeadCellProps: {
                 sx: {
-                    padding: "8px", // Padding untuk header Tahun Berlaku
+                    padding: "1ypx", // Padding untuk header Tahun Berlaku
                 },
             },
             muiTableBodyCellProps: {
                 sx: {
-                    padding: "8px", // Padding untuk data Tahun Berlaku
+                    padding: "1px", // Padding untuk data Tahun Berlaku
                 },
             },
         },
         {
-            accessorKey: "endYear",
+            accessorKey: "c_tahun_berakhir",
             header: "Tahun Berakhir",
             size: 100,
             muiTableHeadCellProps: {
                 sx: {
-                    padding: "8px", // Padding untuk header Tahun Berakhir
+                    padding: "1px", // Padding untuk header Tahun Berakhir
                 },
             },
             muiTableBodyCellProps: {
                 sx: {
-                    padding: "8px", // Padding untuk data Tahun Berakhir
+                    padding: "1px", // Padding untuk data Tahun Berakhir
                 },
             },
         },
@@ -301,7 +263,7 @@ const TableOPDBKD = () => {
                     padding: "5px 10px", // Padding untuk data Actions
                 },
             },
-            Cell: ({ row }: { row: MRT_Row<Person> }) => (
+            Cell: ({ row }: { row: MRT_Row<OPDBKD> }) => (
                 <Box sx={{ display: "flex" }}>
                     <Button
                         onClick={detail}
@@ -323,7 +285,7 @@ const TableOPDBKD = () => {
     // Memoize data with index
     const dataWithIndex = useMemo(
         () => data.map((item, index) => ({ index, ...item })),
-        [],
+        [data],
     );
 
     const table = useMaterialReactTable({
